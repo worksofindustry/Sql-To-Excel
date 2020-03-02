@@ -42,9 +42,7 @@ pushd $save_to_folder
 }
 Set-Location $save_to_folder
 
-$a = (Get-Date).Day 
-$b = get-date -format "yyyy"
-$date = "$b$a"
+$date = (get-date -format "yyyyMMdd")
 
 if ($append_date -eq $true)
 {
