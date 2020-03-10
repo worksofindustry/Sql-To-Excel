@@ -25,7 +25,7 @@
 .PARAMETER append_date
     Optional, default false. If you would like to add date of creation to file name, ex. 'Myfile 20200228.xlsx'. Acceptable values: 0,1,$false,$true
 .EXAMPLE
-   .\HUSA_Order_Creation.ps1 -save_to_folder 'C:\Users\USERNAME\Desktop' -fileName 'My SQL Export' -server localhost -database 'Beta database' `
+   .\SqlToExcel.ps1 -save_to_folder 'C:\Users\USERNAME\Desktop' -fileName 'My SQL Export' -server localhost -database 'Beta database' `
     -sqlfile 'MySqlScript.sql' -worksheetname Sheet1 -append_date $true
 .FUNCTIONALITY
     Excel
@@ -56,7 +56,7 @@ $fileName = $fileName+".xlsx"
 $excelfile =(New-Item -Path . -Name $fileName -ItemType "file" -Force)
 
 
-Invoke-Sqlcmd -Inputfile $sqlfile -ServerInstance $server -Database $database | Export-XLSX -WorkSheetName $worksheetname `
+Invoke-Sqlcmd -Inputfile $sqlfile -ServerInstance $server -Database $database | Select * -ExcludeProperty RowError, RowState, Table, ItemArray, HasErrors | Export-XLSX -WorkSheetName $worksheetname `
 -Path $excelfile -AutoFit -TableStyle None -Force
           
 
