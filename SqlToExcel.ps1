@@ -31,7 +31,7 @@
     Excel
 #>
 [cmdletbinding(ConfirmImpact = 'Medium', SupportsPaging = $true, SupportsShouldProcess = $true)]
-param ([string] $save_to_folder, [string] $fileName, [string] $server='SSDSQL01', [string] $database, [string] $sqlfile, [string] $worksheetname, [bool] $append_date=$false)
+param ([string] $save_to_folder, [string] $fileName, [string] $server='localhost', [string] $database, [string] $sqlfile, [string] $worksheetname, [bool] $append_date=$false)
 Write-Verbose "Generating the Excel file now"
 
 Import-Module ImportExcel
